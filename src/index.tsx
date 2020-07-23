@@ -30,6 +30,10 @@ class CounterComponent extends React.Component<IProps> {
     this.computeCount();
   }
 
+  componentWillUnmount() {
+    this.removeTimer();
+  }
+
   shouldComponentUpdate(prevProps: IProps) {
     return JSON.stringify(prevProps) !== JSON.stringify(this.props);
   }
@@ -58,14 +62,16 @@ class CounterComponent extends React.Component<IProps> {
 
   private operateCount(numbers: number[]) {
     const n = [...numbers];
+    this.removeTimer();
 
-    clearTimeout(this.timer);
-    this.timer = setTimeout(() => {
-      if (!n.length) return;
+    (function countAction(_this) {
+      _this.timer = setTimeout(() => {
+        if (!n.length) return;
 
-      this.renderCount(n.pop() as number);
-      this.operateCount(n);
-    }, DELAY);
+        _this.renderCount(n.pop() as number);
+        countAction(_this);
+      }, DELAY);
+    })(this);
   }
 
   private renderCount(number: number) {
@@ -77,6 +83,11 @@ class CounterComponent extends React.Component<IProps> {
       /\B(?=(\d{3})+(?!\d))/g,
       ","
     )}${!!demical ? `.${demical}` : ""}`;
+  }
+
+  private removeTimer() {
+    if (!this.timer) return;
+    clearTimeout(this.timer);
   }
 
   render() {
