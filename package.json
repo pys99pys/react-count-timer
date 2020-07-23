@@ -16,8 +16,7 @@
   },
   "scripts": {
     "start": "tsc -w",
-    "build": "rm -rf dist && tsc",
-    "deploy": "git push origin master && npm publish"
+    "build": "rm -rf dist && tsc"
   },
   "author": "pys99pys@gmail.com",
   "license": "ISC",
