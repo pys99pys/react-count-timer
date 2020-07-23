@@ -20,7 +20,7 @@ $ yarn add react-counter-timer
 import ReactCountTimer from 'react-count-timer
 
 <div>
-	<ReactCountTimer
+  <ReactCountTimer
   	className="my-class-name"
     count={500}
     duration={3000}
