@@ -38,7 +38,9 @@ class CounterComponent extends React.Component<IProps> {
     const { count, duration } = this.props;
 
     const numbers: number[] = [];
-    const from = Number(this.$el.current?.innerText || 0);
+    const from = Number(
+      this.$el.current?.textContent?.replace(/[^0-9]/g, "") || 0
+    );
     const numberCount = count - from;
     const sceneCount = Math.max(DELAY, duration / DELAY);
     const demicalLength = Number((count.toString().split(".")[1] || "").length);
@@ -67,8 +69,14 @@ class CounterComponent extends React.Component<IProps> {
   }
 
   private renderCount(number: number) {
-    if (!this.$el.current?.innerText) return;
-    this.$el.current.innerText = number.toString();
+    if (!this.$el.current?.textContent) return;
+
+    const [integer, demical] = number.toString().split(".");
+
+    this.$el.current.textContent = `${integer.replace(
+      /\B(?=(\d{3})+(?!\d))/g,
+      ","
+    )}${!!demical ? `.${demical}` : ""}`;
   }
 
   render() {

@@ -1,6 +1,6 @@
 {
   "name": "react-count-timer",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "Counter with react",
   "main": "./dist/index.js",
   "repository": "https://github.com/pys99pys/react-count-timer",
