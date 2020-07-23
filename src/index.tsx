@@ -40,7 +40,7 @@ class CounterComponent extends React.Component<IProps> {
     const numbers: number[] = [];
     const from = Number(this.$el.current?.innerText || 0);
     const numberCount = count - from;
-    const sceneCount = duration / DELAY;
+    const sceneCount = Math.max(DELAY, duration / DELAY);
     const demicalLength = Number((count.toString().split(".")[1] || "").length);
 
     for (let i = 0; i < sceneCount; i += 1) {
