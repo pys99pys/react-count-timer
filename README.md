@@ -21,7 +21,7 @@ import ReactCountTimer from 'react-count-timer
 
 <div>
   <ReactCountTimer
-  	className="my-class-name"
+    className="my-class-name"
     count={500}
     duration={3000}
   />
