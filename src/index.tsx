@@ -9,7 +9,7 @@ interface IProps {
 const DELAY = 5;
 const { createRef } = React;
 
-class CounterComponent extends React.Component<IProps> {
+class CounterComponent extends React.PureComponent<IProps> {
   $el: React.RefObject<HTMLSpanElement>;
   timer: number;
   demicalLength: number;
@@ -32,10 +32,6 @@ class CounterComponent extends React.Component<IProps> {
 
   componentWillUnmount() {
     this.removeTimer();
-  }
-
-  shouldComponentUpdate(prevProps: IProps) {
-    return JSON.stringify(prevProps) !== JSON.stringify(this.props);
   }
 
   private computeCount() {
@@ -91,10 +87,8 @@ class CounterComponent extends React.Component<IProps> {
   }
 
   render() {
-    const { className } = this.props;
-
     return (
-      <span ref={this.$el} className={className || ""}>
+      <span ref={this.$el} className={this.props.className || ""}>
         0
       </span>
     );
