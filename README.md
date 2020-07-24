@@ -30,8 +30,8 @@ import ReactCountTimer from 'react-count-timer
 
 ### Options
 
-| option name | required | description             |
-| ----------- | -------- | ----------------------- |
-| className   | false    | class name to add       |
-| count       | true     | final number to render  |
-| duration    | true     | time to reach the count |
+| option name | type   | required | description             |
+| ----------- | ------ | -------- | ----------------------- |
+| className   | string | false    | class name to add       |
+| count       | number | true     | final number to render  |
+| duration    | number | true     | time to reach the count |
